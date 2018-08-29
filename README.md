@@ -74,6 +74,9 @@ python main.py --phase guide --dataset cat2dog --concat True --direction a2b --g
 * --n_d_con
   * Author use `n_d_con = 3` (default)
   * Model can still generate diverse results with `n_d_con = 1`
+  
+* --num_attribute (only for the test phase)
+  * If you use the `num_attribute > 1`, tehn resulting images are variously generated
 
 ## Summary
 ### Comparison
