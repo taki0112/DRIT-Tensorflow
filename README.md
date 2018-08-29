@@ -14,13 +14,19 @@ Simple Tensorflow implementation of [Diverse Image-to-Image Translation via Dise
 * [CycleGAN](https://people.eecs.berkeley.edu/~taesung_park/CycleGAN/datasets/)
   
 ### Train
-* python main.py --phase train --dataset cat2dog --concat True
+```
+python main.py --phase train --dataset cat2dog --concat True
+```
 
 ### Test
-* python main.py --phase test --dataset cat2dog --concat True
+```
+python main.py --phase test --dataset cat2dog --concat True
+```
 
 ### Guide
-* python main.py --phase guide --dataset cat2dog --concat True --direction a2b --guide_img ./guide.jpg
+```
+python main.py --phase guide --dataset cat2dog --concat True --direction a2b --guide_img ./guide.jpg
+```
 
 ### Tips
 * --concat
