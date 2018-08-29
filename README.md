@@ -57,12 +57,12 @@ python main.py --phase guide --dataset cat2dog --concat True --direction a2b --g
   * `False` : for the **shape preserving translation** (winter <-> summer)
   
 * --n_scale
-  * Using the `n_scale > 1`, a.k.a. `multiscale discriminator` often gets better results
   * Recommend `n_scale = 3` (default)
+  * Using the `n_scale > 1`, a.k.a. `multiscale discriminator` often gets better results
   
 * --n_dis
-  * If you don't the use multi-discriminator, then recommend `n_dis = 6`
   * If you use the multi-discriminator, then recommend `n_dis = 4` (default)
+  * If you don't the use multi-discriminator, then recommend `n_dis = 6`
   
 * --n_d_con
   * Author use `n_d_con = 3` (default)
