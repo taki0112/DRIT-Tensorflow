@@ -1,5 +1,5 @@
 # DRIT-Tensorflow
-Simple Tensorflow implementation of Diverse Image-to-Image Translation via Disentangled Representations (ECCV 2018 Oral)
+Simple Tensorflow implementation of [Diverse Image-to-Image Translation via Disentangled Representations](https://arxiv.org/abs/1808.00948) (ECCV 2018 Oral)
 
 <img src='./assets/final.gif' width="800px">
 
