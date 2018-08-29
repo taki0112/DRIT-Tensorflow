@@ -65,8 +65,8 @@ python main.py --phase guide --dataset cat2dog --concat True --direction a2b --g
   * If you use the multi-discriminator, then recommend `n_dis = 4` (default)
   
 * --n_d_con
-  * Author use `n_d_con = 3`
-  * Model can still generate diverse results with `n_d_con = 1` (default)
+  * Author use `n_d_con = 3` (default)
+  * Model can still generate diverse results with `n_d_con = 1`
 
 ## Summary
 ### Comparison
