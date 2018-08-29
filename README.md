@@ -12,6 +12,29 @@ Simple Tensorflow implementation of [Diverse Image-to-Image Translation via Dise
 * [cat2dog](http://vllab.ucmerced.edu/hylee/DRIT/datasets/cat2dog)
 * [portrait](http://vllab.ucmerced.edu/hylee/DRIT/datasets/portrait)
 * [CycleGAN](https://people.eecs.berkeley.edu/~taesung_park/CycleGAN/datasets/)
+
+```
+├── dataset
+   └── YOUR_DATASET_NAME
+       ├── trainA
+           ├── xxx.jpg (name, format doesn't matter)
+           ├── yyy.png
+           └── ...
+       ├── trainB
+           ├── zzz.jpg
+           ├── www.png
+           └── ...
+       ├── testA
+           ├── aaa.jpg 
+           ├── bbb.png
+           └── ...
+       └── testB
+           ├── ccc.jpg 
+           ├── ddd.png
+           └── ...
+           
+├── guide.jpg (example for guided image translation task)
+```
   
 ### Train
 ```
