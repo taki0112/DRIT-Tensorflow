@@ -48,7 +48,7 @@ Simple Tensorflow implementation of Diverse Image-to-Image Translation via Disen
 ### Test & Guide phase
 ![test](./assets/test.png)
 
-### Model
+### Architecture
 ![true](./assets/true.png)
 ![false](./assets/false.png)
 
