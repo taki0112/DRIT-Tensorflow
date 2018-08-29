@@ -50,7 +50,7 @@ python main.py --phase train --dataset cat2dog --concat True
 
 ### Test
 ```
-python main.py --phase test --dataset cat2dog --concat True
+python main.py --phase test --dataset cat2dog --concat True --num_attribute 3
 ```
 
 ### Guide
