@@ -53,7 +53,7 @@ python main.py --phase guide --dataset cat2dog --concat True --direction a2b --g
 
 ### Tips
 * --concat
-  * `True` : for the **shape variation translation** (e.g., cat <-> dog) (default)
+  * `True` : for the **shape variation translation** (cat <-> dog) (default)
   * `False` : for the **shape preserving translation** (winter <-> summer)
   
 * --n_scale
