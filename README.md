@@ -58,14 +58,14 @@ python main.py --phase guide --dataset cat2dog --concat True --direction a2b --g
   
 * --n_scale
   * Using the `n_scale > 1`, a.k.a. `multiscale discriminator` often gets better results
-  * recommend `n_scale = 3`
+  * Recommend `n_scale = 3`
   
 * --n_dis
   * If you don't use multi-discriminator, then recommend `n_dis = 6`
   
 * --n_d_con
+  * Author use `n_d_con = 3`
   * Model can still generate diverse results with `n_d_con = 1` 
-  * author use `n_d_con = 3`
 
 ## Summary
 ### Comparison
