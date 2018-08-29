@@ -19,6 +19,9 @@ Simple Tensorflow implementation of Diverse Image-to-Image Translation via Disen
 ### Test
 * python main.py --phase test --dataset cat2dog --concat True
 
+### Guide
+* python main.py --phase guide --dataset cat2dog --concat True --direction a2b --guide_img ./guide.jpg
+
 ### Tips
 * --concat
   * `True` : for the **shape variation translation** (e.g., cat <-> dog)
@@ -42,7 +45,16 @@ Simple Tensorflow implementation of Diverse Image-to-Image Translation via Disen
 ![train_1](./assets/train_1.png)
 ![train_2](./assets/train_2.png)
 
-### Test phase
+### Test & Guide phase
+![test](./assets/test.png)
+
+### Model
+![true](./assets/true.png)
+![false](./assets/false.png)
+
+## Results
+![result_1](./assets/result1.png)
+![result_2](./assets/result2.png)
 
 ## Author
 Junho Kim
