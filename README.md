@@ -7,13 +7,6 @@ Simple Tensorflow implementation of [Diverse Image-to-Image Translation via Dise
 * Tensorflow 1.8
 * python 3.6
 
-## Issue
-* [Author's code](https://github.com/HsinYingLee/DRIT) is slightly different from the paper. So I share two versions of code.
-  * `DRIT.py` : Code is implemented that ***exactly same as the author code***
-  * `DRIT_paper.py` : Code is implemented that ***exactly same as the paper***
-* If you want to use the `DRIT_paper.py`, then modify the `main.py`
-  * `from DRIT import DRIT` -> `from DRIT_paper import DRIT`
-  
 ## Usage
 ### Download Dataset
 * [cat2dog](http://vllab.ucmerced.edu/hylee/DRIT/datasets/cat2dog)
