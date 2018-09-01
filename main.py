@@ -5,6 +5,7 @@ from utils import *
 """parsing and configuration"""
 def parse_args():
     desc = "Tensorflow implementation of DRIT"
+
     parser = argparse.ArgumentParser(description=desc)
     parser.add_argument('--phase', type=str, default='train', help='[train, test, guide]')
     parser.add_argument('--dataset', type=str, default='cat2dog', help='dataset_name')

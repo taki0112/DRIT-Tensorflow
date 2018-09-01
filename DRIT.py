@@ -451,11 +451,11 @@ class DRIT(object) :
         g_latent_loss_b = L1_loss(attribute_fake_random_b, random_z)
 
         if self.concat :
-            g_kl_loss_a = kl_loss_concat(mean_a, logvar_a) + kl_loss(content_a)
-            g_kl_loss_b = kl_loss_concat(mean_b, logvar_b) + kl_loss(content_b)
+            g_kl_loss_a = kl_loss(mean_a, logvar_a) + l2_regularize(content_a)
+            g_kl_loss_b = kl_loss(mean_b, logvar_b) + l2_regularize(content_b)
         else :
-            g_kl_loss_a = kl_loss(attribute_a) + kl_loss(content_a)
-            g_kl_loss_b = kl_loss(attribute_b) + kl_loss(content_b)
+            g_kl_loss_a = l2_regularize(attribute_a) + l2_regularize(content_a)
+            g_kl_loss_b = l2_regularize(attribute_b) + l2_regularize(content_b)
 
 
         d_adv_loss_a = discriminator_loss(self.gan_type, real_A_logit, fake_A_logit)

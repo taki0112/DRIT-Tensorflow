@@ -330,13 +330,12 @@ def generator_loss(type, fake, content=False):
     return sum(loss)
 
 
-def kl_loss(mu) :
-    mu_2 = tf.square(mu)
-    loss = tf.reduce_mean(mu_2)
+def l2_regularize(x) :
+    loss = tf.reduce_mean(tf.square(x))
 
     return loss
 
-def kl_loss_concat(mu, logvar) :
+def kl_loss(mu, logvar) :
     loss = 0.5 * tf.reduce_sum(tf.square(mu) + tf.exp(logvar) - 1 - logvar, axis=-1)
     loss = tf.reduce_mean(loss)
 
