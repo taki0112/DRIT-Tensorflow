@@ -76,7 +76,7 @@ python main.py --phase guide --dataset cat2dog --concat True --direction a2b --g
 
 ## Summary
 ### Comparison
-![difference](./assets/difference.png)
+![comparison](./assets/comparison.png)
 
 ### Train phase
 ![train_1](./assets/train_1.png)
