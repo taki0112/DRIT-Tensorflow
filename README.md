@@ -4,7 +4,7 @@ Simple Tensorflow implementation of [Diverse Image-to-Image Translation via Dise
 <img src='./assets/final.gif' width="800px">
 
 ## Pytorch version
-* [Autor_pytorch_code](https://github.com/HsinYingLee/DRIT)
+* [Author_pytorch_code](https://github.com/HsinYingLee/DRIT)
 
 ## Requirements
 * Tensorflow 1.8
