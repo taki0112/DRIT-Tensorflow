@@ -3,6 +3,9 @@ Simple Tensorflow implementation of [Diverse Image-to-Image Translation via Dise
 
 <img src='./assets/final.gif' width="800px">
 
+## Pytorch version
+* [Autor_pytorch_code](https://github.com/HsinYingLee/DRIT)
+
 ## Requirements
 * Tensorflow 1.8
 * python 3.6
@@ -53,8 +56,8 @@ python main.py --phase guide --dataset cat2dog --concat True --direction a2b --g
 
 ### Tips
 * --concat
-  * `True` : for the **shape variation translation** (cat <-> dog) **(default)**
-  * `False` : for the **shape preserving translation** (winter <-> summer)
+  * `True` : for the **shape preserving translation** (winter <-> summer) **(default)**
+  * `False` : for the **shape variation translation** (cat <-> dog)
   
 * --n_scale
   * Recommend `n_scale = 3` **(default)**
