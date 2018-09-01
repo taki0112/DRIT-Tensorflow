@@ -53,23 +53,23 @@ python main.py --phase guide --dataset cat2dog --concat True --direction a2b --g
 
 ### Tips
 * --concat
-  * `True` : for the **shape variation translation** (cat <-> dog) (default)
+  * `True` : for the **shape variation translation** (cat <-> dog) **(default)**
   * `False` : for the **shape preserving translation** (winter <-> summer)
   
 * --n_scale
-  * Recommend `n_scale = 3` (default)
+  * Recommend `n_scale = 3` **(default)**
   * Using the `n_scale > 1`, a.k.a. `multiscale discriminator` often gets better results
   
 * --n_dis
-  * If you use the multi-discriminator, then recommend `n_dis = 4` (default)
+  * If you use the multi-discriminator, then recommend `n_dis = 4` **(default)**
   * If you don't the use multi-discriminator, then recommend `n_dis = 6`
   
 * --n_d_con
-  * Author use `n_d_con = 3` (default)
+  * Author use `n_d_con = 3` **(default)**
   * Model can still generate diverse results with `n_d_con = 1`
   
 * --num_attribute (only for the test phase)
-  * If you use the `num_attribute > 1`, then result images are variously generated
+  * If you use the `num_attribute > 1`, then output images are variously generated
 
 ## Summary
 ### Comparison
