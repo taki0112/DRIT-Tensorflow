@@ -78,16 +78,16 @@ python main.py --phase guide --dataset cat2dog --concat True --direction a2b --g
 ### Comparison
 ![comparison](./assets/comparison.png)
 
+### Architecture
+![true](./assets/true.png)
+![false](./assets/false.png)
+
 ### Train phase
 ![train_1](./assets/train_1.png)
 ![train_2](./assets/train_2.png)
 
 ### Test & Guide phase
 ![test](./assets/test.png)
-
-### Architecture
-![true](./assets/true.png)
-![false](./assets/false.png)
 
 ## Results
 ![result_1](./assets/result1.png)
