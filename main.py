@@ -8,7 +8,7 @@ def parse_args():
 
     parser = argparse.ArgumentParser(description=desc)
     parser.add_argument('--phase', type=str, default='train', help='[train, test, guide]')
-    parser.add_argument('--dataset', type=str, default='winter2summer', help='dataset_name')
+    parser.add_argument('--dataset', type=str, default='summer2winter', help='dataset_name')
     parser.add_argument('--augment_flag', type=str2bool, default=True, help='Image augmentation use or not')
     parser.add_argument('--decay_flag', type=str2bool, default=True, help='using learning rate decay')
 
