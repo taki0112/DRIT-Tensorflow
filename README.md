@@ -41,22 +41,22 @@ Simple Tensorflow implementation of [Diverse Image-to-Image Translation via Dise
   
 ### Train
 ```
-python main.py --phase train --dataset winter2summer --concat True
+python main.py --phase train --dataset summer2winter --concat True
 ```
 
 ### Test
 ```
-python main.py --phase test --dataset winter2summer --concat True --num_attribute 3
+python main.py --phase test --dataset summer2winter --concat True --num_attribute 3
 ```
 
 ### Guide
 ```
-python main.py --phase guide --dataset winter2summer --concat True --direction a2b --guide_img ./guide.jpg
+python main.py --phase guide --dataset summer2winter --concat True --direction a2b --guide_img ./guide.jpg
 ```
 
 ### Tips
 * --concat
-  * `True` : for the **shape preserving translation** (winter <-> summer) **(default)**
+  * `True` : for the **shape preserving translation** (summer <-> winter) **(default)**
   * `False` : for the **shape variation translation** (cat <-> dog)
   
 * --n_scale
