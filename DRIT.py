@@ -559,8 +559,8 @@ class DRIT(object) :
 
 
         """ Image """
-        self.fake_A = fake_a
-        self.fake_B = fake_b
+        self.fake_A = random_fake_a
+        self.fake_B = random_fake_b
 
         self.real_A = self.domain_A
         self.real_B = self.domain_B
@@ -570,8 +570,8 @@ class DRIT(object) :
         self.test_image = tf.placeholder(tf.float32, [1, self.img_size, self.img_size, self.img_ch], name='test_image')
         self.test_random_z = tf.random_normal(shape=[1, self.n_z], mean=0.0, stddev=1.0, dtype=tf.float32)
 
-        test_content_a, test_attribute_a, _, _ = self.Encoder_A(self.test_image, is_training=False, reuse=True)
-        test_content_b, test_attribute_b, _, _ = self.Encoder_B(self.test_image, is_training=False, reuse=True)
+        test_content_a, _, _, _ = self.Encoder_A(self.test_image, is_training=False, reuse=True)
+        test_content_b, _, _, _ = self.Encoder_B(self.test_image, is_training=False, reuse=True)
 
         self.test_fake_A = self.Decoder_A(content_B=test_content_b, attribute_A=self.test_random_z, reuse=True)
         self.test_fake_B = self.Decoder_B(content_A=test_content_a, attribute_B=self.test_random_z, reuse=True)
