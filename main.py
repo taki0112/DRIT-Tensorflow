@@ -34,7 +34,7 @@ def parse_args():
     parser.add_argument('--kl_w', type=float, default=0.01, help='weight of kl-divergence loss')
 
     parser.add_argument('--ch', type=int, default=64, help='base channel number per layer')
-    parser.add_argument('--concat', type=str2bool, default=True, help='using concat networks')
+    parser.add_argument('--concat', type=str2bool, default=False, help='using concat networks')
 
     # concat = False : for the shape variation translation (cat <-> dog)
     # concat = True : for the shape preserving translation (winter <-> summer)
