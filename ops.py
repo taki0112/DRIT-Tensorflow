@@ -281,12 +281,13 @@ def spectral_norm(w, iteration=1):
 # Loss function
 ##################################################################################
 
-def discriminator_loss(type, real, fake, content=False):
+def discriminator_loss(type, real, fake, fake_random=None, content=False):
     n_scale = len(real)
     loss = []
 
     real_loss = 0
     fake_loss = 0
+    fake_random_loss = 0
 
     if content :
         for i in range(n_scale):
@@ -300,12 +301,14 @@ def discriminator_loss(type, real, fake, content=False):
             if type == 'lsgan' :
                 real_loss = tf.reduce_mean(tf.squared_difference(real[i], 1.0))
                 fake_loss = tf.reduce_mean(tf.square(fake[i]))
+                fake_random_loss = tf.reduce_mean(tf.square(fake_random[i]))
 
             if type == 'gan' :
                 real_loss = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(labels=tf.ones_like(real[i]), logits=real[i]))
                 fake_loss = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(labels=tf.zeros_like(fake[i]), logits=fake[i]))
+                fake_random_loss = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(labels=tf.zeros_like(fake_random[i]), logits=fake_random[i]))
 
-            loss.append(real_loss + fake_loss)
+            loss.append(real_loss + fake_loss + fake_random_loss)
 
     return sum(loss)
 

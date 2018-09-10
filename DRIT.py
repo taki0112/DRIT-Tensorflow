@@ -458,8 +458,8 @@ class DRIT(object) :
             g_kl_loss_b = l2_regularize(attribute_b) + l2_regularize(content_b)
 
 
-        d_adv_loss_a = discriminator_loss(self.gan_type, real_A_logit, fake_A_logit)
-        d_adv_loss_b = discriminator_loss(self.gan_type, real_B_logit, fake_B_logit)
+        d_adv_loss_a = discriminator_loss(self.gan_type, real_A_logit, fake_A_logit, random_fake_A_logit)
+        d_adv_loss_b = discriminator_loss(self.gan_type, real_B_logit, fake_B_logit, random_fake_A_logit)
 
         d_con_loss = discriminator_loss(self.gan_type, content_A_logit, content_B_logit, content=True)
 
