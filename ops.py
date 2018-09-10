@@ -15,7 +15,7 @@ weight_regularizer = tf_contrib.layers.l2_regularizer(scale=0.0001)
 
 def conv(x, channels, kernel=4, stride=2, pad=0, pad_type='zero', use_bias=True, sn=False, scope='conv'):
     with tf.variable_scope(scope):
-        if pad != 0 :
+        if pad > 0 :
             if (kernel - stride) % 2 == 0:
                 pad_top = pad
                 pad_bottom = pad
@@ -189,19 +189,20 @@ def down_sample(x) :
     return avg_pooling(x, kernel=3, stride=2, pad=1)
 
 def avg_pooling(x, kernel=2, stride=2, pad=0) :
-    if (kernel - stride) % 2 == 0:
-        pad_top = pad
-        pad_bottom = pad
-        pad_left = pad
-        pad_right = pad
+    if pad > 0 :
+        if (kernel - stride) % 2 == 0:
+            pad_top = pad
+            pad_bottom = pad
+            pad_left = pad
+            pad_right = pad
 
-    else:
-        pad_top = pad
-        pad_bottom = kernel - stride - pad_top
-        pad_left = pad
-        pad_right = kernel - stride - pad_left
+        else:
+            pad_top = pad
+            pad_bottom = kernel - stride - pad_top
+            pad_left = pad
+            pad_right = kernel - stride - pad_left
 
-    x = tf.pad(x, [[0, 0], [pad_top, pad_bottom], [pad_left, pad_right], [0, 0]])
+        x = tf.pad(x, [[0, 0], [pad_top, pad_bottom], [pad_left, pad_right], [0, 0]])
 
     return tf.layers.average_pooling2d(x, pool_size=kernel, strides=stride, padding='VALID')
 
