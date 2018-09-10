@@ -291,8 +291,13 @@ def discriminator_loss(type, real, fake, fake_random=None, content=False):
 
     if content :
         for i in range(n_scale):
-            real_loss = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(labels=tf.ones_like(real[i]), logits=real[i]))
-            fake_loss = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(labels=tf.zeros_like(fake[i]), logits=fake[i]))
+            if type == 'lsgan' :
+                real_loss = tf.reduce_mean(tf.squared_difference(real[i], 1.0))
+                fake_loss = tf.reduce_mean(tf.square(fake[i]))
+
+            if type =='gan' :
+                real_loss = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(labels=tf.ones_like(real[i]), logits=real[i]))
+                fake_loss = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(labels=tf.zeros_like(fake[i]), logits=fake[i]))
 
             loss.append(real_loss + fake_loss)
 
@@ -321,7 +326,11 @@ def generator_loss(type, fake, content=False):
 
     if content :
         for i in range(n_scale):
-            fake_loss = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(labels=0.5 * tf.ones_like(fake[i]), logits=fake[i]))
+            if type =='lsgan' :
+                fake_loss = tf.reduce_mean(tf.squared_difference(fake[i], 0.5))
+
+            if type == 'gan' :
+                fake_loss = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(labels=0.5 * tf.ones_like(fake[i]), logits=fake[i]))
 
             loss.append(fake_loss)
     else :
