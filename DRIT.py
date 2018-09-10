@@ -237,7 +237,7 @@ class DRIT(object) :
         with tf.variable_scope(scope, reuse=reuse) :
             channel = self.ch * self.n_layer
             for i in range(3) :
-                x = conv(x, channel, kernel=7, stride=2, pad=1, pad_type='reflect', sn=self.sn, scope='conv_' + str(i))
+                x = conv(x, channel, kernel=7, stride=2, pad=1, pad_type='reflect', scope='conv_' + str(i))
                 x = instance_norm(x, scope='ins_norm_' + str(i))
                 x = lrelu(x, 0.01)
 
