@@ -509,7 +509,7 @@ class DRIT(object) :
 
         self.G_optim = tf.train.AdamOptimizer(self.lr, beta1=0.5, beta2=0.999).minimize(self.Generator_loss, var_list=G_vars)
         self.D_optim = tf.train.AdamOptimizer(self.lr, beta1=0.5, beta2=0.999).minimize(self.Discriminator_loss, var_list=D_vars)
-        self.D_content_optim = tf.train.AdamOptimizer(self.lr, beta1=0.5, beta2=0.999).apply_gradients(zip(grads, D_content_vars))
+        self.D_content_optim = tf.train.AdamOptimizer(self.d_content_init_lr, beta1=0.5, beta2=0.999).apply_gradients(zip(grads, D_content_vars))
 
 
         """" Summary """
