@@ -580,11 +580,15 @@ class DRIT(object) :
         self.content_image = tf.placeholder(tf.float32, [1, self.img_size, self.img_size, self.img_ch], name='content_image')
         self.attribute_image = tf.placeholder(tf.float32, [1, self.img_size, self.img_size, self.img_ch], name='guide_attribute_image')
 
-        guide_content_A, guide_attribute_A, _, _ = self.Encoder_A(self.content_image, is_training=False, reuse=True)
-        guide_content_B, guide_attribute_B, _, _ = self.Encoder_B(self.attribute_image, is_training=False, reuse=True)
+        if self.direction == 'a2b' :
+            guide_content_A, _, _, _ = self.Encoder_A(self.content_image, is_training=False, reuse=True)
+            _, guide_attribute_B, _, _ = self.Encoder_B(self.attribute_image, is_training=False, reuse=True)
+            self.guide_fake_B = self.Decoder_B(content_A=guide_content_A, attribute_B=guide_attribute_B, reuse=True)
 
-        self.guide_fake_A = self.Decoder_A(content_B=guide_content_B, attribute_A=guide_attribute_A, reuse=True)
-        self.guide_fake_B = self.Decoder_B(content_A=guide_content_A, attribute_B=guide_attribute_B, reuse=True)
+        else :
+            guide_content_B, _, _, _ = self.Encoder_B(self.content_image, is_training=False, reuse=True)
+            _, guide_attribute_A, _, _ = self.Encoder_A(self.attribute_image, is_training=False, reuse=True)
+            self.guide_fake_A = self.Decoder_A(content_B=guide_content_B, attribute_A=guide_attribute_A, reuse=True)
 
     def train(self):
         # initialize all variables
