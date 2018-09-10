@@ -127,7 +127,7 @@ class DRIT(object) :
 
             return x
 
-    def attribute_encoder(self, x, reuse=False, scope='attribute_encder'):
+    def attribute_encoder(self, x, reuse=False, scope='attribute_encoder'):
         channel = self.ch
         with tf.variable_scope(scope, reuse=reuse) :
             x = conv(x, channel, kernel=7, stride=1, pad=3, pad_type='reflect', scope='conv')
@@ -501,7 +501,7 @@ class DRIT(object) :
 
         """ Training """
         t_vars = tf.trainable_variables()
-        G_vars = [var for var in t_vars if 'endoer' in var.name or 'generator' in var.name]
+        G_vars = [var for var in t_vars if 'encoder' in var.name or 'generator' in var.name]
         D_vars = [var for var in t_vars if 'discriminator' in var.name and 'content' not in var.name]
         D_content_vars = [var for var in t_vars if 'content_discriminator' in var.name]
 
