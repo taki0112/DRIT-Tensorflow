@@ -15,22 +15,23 @@ weight_regularizer = tf_contrib.layers.l2_regularizer(scale=0.0001)
 
 def conv(x, channels, kernel=4, stride=2, pad=0, pad_type='zero', use_bias=True, sn=False, scope='conv'):
     with tf.variable_scope(scope):
-        if (kernel - stride) % 2 == 0:
-            pad_top = pad
-            pad_bottom = pad
-            pad_left = pad
-            pad_right = pad
+        if pad != 0 :
+            if (kernel - stride) % 2 == 0:
+                pad_top = pad
+                pad_bottom = pad
+                pad_left = pad
+                pad_right = pad
 
-        else:
-            pad_top = pad
-            pad_bottom = kernel - stride - pad_top
-            pad_left = pad
-            pad_right = kernel - stride - pad_left
+            else:
+                pad_top = pad
+                pad_bottom = kernel - stride - pad_top
+                pad_left = pad
+                pad_right = kernel - stride - pad_left
 
-        if pad_type == 'zero':
-            x = tf.pad(x, [[0, 0], [pad_top, pad_bottom], [pad_left, pad_right], [0, 0]])
-        if pad_type == 'reflect':
-            x = tf.pad(x, [[0, 0], [pad_top, pad_bottom], [pad_left, pad_right], [0, 0]], mode='REFLECT')
+            if pad_type == 'zero':
+                x = tf.pad(x, [[0, 0], [pad_top, pad_bottom], [pad_left, pad_right], [0, 0]])
+            if pad_type == 'reflect':
+                x = tf.pad(x, [[0, 0], [pad_top, pad_bottom], [pad_left, pad_right], [0, 0]], mode='REFLECT')
 
         if sn :
             w = tf.get_variable("kernel", shape=[kernel, kernel, x.get_shape()[-1], channels], initializer=weight_init, regularizer=weight_regularizer)
@@ -280,23 +281,31 @@ def spectral_norm(w, iteration=1):
 # Loss function
 ##################################################################################
 
-def discriminator_loss(type, real, fake):
+def discriminator_loss(type, real, fake, content=False):
     n_scale = len(real)
     loss = []
 
     real_loss = 0
     fake_loss = 0
 
-    for i in range(n_scale) :
-        if type == 'lsgan' :
-            real_loss = tf.reduce_mean(tf.squared_difference(real[i], 1.0))
-            fake_loss = tf.reduce_mean(tf.square(fake[i]))
-
-        if type == 'gan' :
+    if content :
+        for i in range(n_scale):
             real_loss = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(labels=tf.ones_like(real[i]), logits=real[i]))
             fake_loss = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(labels=tf.zeros_like(fake[i]), logits=fake[i]))
 
-        loss.append(real_loss + fake_loss)
+            loss.append(real_loss + fake_loss)
+
+    else :
+        for i in range(n_scale) :
+            if type == 'lsgan' :
+                real_loss = tf.reduce_mean(tf.squared_difference(real[i], 1.0))
+                fake_loss = tf.reduce_mean(tf.square(fake[i]))
+
+            if type == 'gan' :
+                real_loss = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(labels=tf.ones_like(real[i]), logits=real[i]))
+                fake_loss = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(labels=tf.zeros_like(fake[i]), logits=fake[i]))
+
+            loss.append(real_loss + fake_loss)
 
     return sum(loss)
 
@@ -309,11 +318,7 @@ def generator_loss(type, fake, content=False):
 
     if content :
         for i in range(n_scale):
-            if type == 'lsgan':
-                fake_loss = tf.reduce_mean(tf.squared_difference(fake[i], 0.5))
-
-            if type == 'gan':
-                fake_loss = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(labels=0.5 * tf.ones_like(fake[i]), logits=fake[i]))
+            fake_loss = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(labels=0.5 * tf.ones_like(fake[i]), logits=fake[i]))
 
             loss.append(fake_loss)
     else :

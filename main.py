@@ -8,7 +8,7 @@ def parse_args():
 
     parser = argparse.ArgumentParser(description=desc)
     parser.add_argument('--phase', type=str, default='train', help='[train, test, guide]')
-    parser.add_argument('--dataset', type=str, default='summer2winter', help='dataset_name')
+    parser.add_argument('--dataset', type=str, default='cat2dog', help='dataset_name')
     parser.add_argument('--augment_flag', type=str2bool, default=True, help='Image augmentation use or not')
     parser.add_argument('--decay_flag', type=str2bool, default=True, help='using learning rate decay')
 
@@ -36,12 +36,24 @@ def parse_args():
     parser.add_argument('--ch', type=int, default=64, help='base channel number per layer')
     parser.add_argument('--concat', type=str2bool, default=True, help='using concat networks')
 
+    # concat = False : for the shape variation translation (cat <-> dog)
+    # concat = True : for the shape preserving translation (winter <-> summer)
+
     parser.add_argument('--n_z', type=int, default=8, help='length of z')
     parser.add_argument('--n_layer', type=int, default=4, help='number of layers in G, D')
 
     parser.add_argument('--n_dis', type=int, default=4, help='number of discriminator layer')
+
+    # If you don't use multi-discriminator, then recommend n_dis = 6
+
     parser.add_argument('--n_scale', type=int, default=3, help='number of scales for discriminator')
+
+    # using the multiscale discriminator often gets better results
+
     parser.add_argument('--n_d_con', type=int, default=3, help='# of iterations for updating content discrimnator')
+
+    # model can still generate diverse results with n_d_con = 1
+
     parser.add_argument('--sn', type=str2bool, default=False, help='using spectral normalization')
 
     parser.add_argument('--img_size', type=int, default=256, help='The size of image')

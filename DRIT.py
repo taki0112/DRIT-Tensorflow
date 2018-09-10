@@ -461,7 +461,7 @@ class DRIT(object) :
         d_adv_loss_a = discriminator_loss(self.gan_type, real_A_logit, fake_A_logit)
         d_adv_loss_b = discriminator_loss(self.gan_type, real_B_logit, fake_B_logit)
 
-        d_con_loss = discriminator_loss(self.gan_type, content_A_logit, content_B_logit)
+        d_con_loss = discriminator_loss(self.gan_type, content_A_logit, content_B_logit, content=True)
 
         Generator_A_domain_loss = self.domain_adv_w * g_adv_loss_a
         Generator_A_content_loss = self.content_adv_w * g_con_loss_a
