@@ -314,7 +314,7 @@ def discriminator_loss(type, real, fake, fake_random=None, content=False):
                 fake_loss = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(labels=tf.zeros_like(fake[i]), logits=fake[i]))
                 fake_random_loss = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(labels=tf.zeros_like(fake_random[i]), logits=fake_random[i]))
 
-            loss.append(real_loss + fake_loss + fake_random_loss)
+            loss.append(real_loss * 2 + fake_loss + fake_random_loss)
 
     return sum(loss)
 

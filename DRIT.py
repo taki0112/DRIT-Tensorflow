@@ -34,7 +34,7 @@ class DRIT(object) :
         self.img_ch = args.img_ch
 
         self.init_lr = args.lr
-        self.d_content_init_lr = args.lr / 2.5
+        self.content_init_lr = args.lr / 2.5
         self.ch = args.ch
         self.concat = args.concat
 
@@ -378,6 +378,7 @@ class DRIT(object) :
 
     def build_model(self):
         self.lr = tf.placeholder(tf.float32, name='lr')
+        self.content_lr = tf.placeholder(tf.float32, name='content_lr')
 
         """ Input Image"""
         Image_Data_Class = ImageData(self.img_size, self.img_ch, self.augment_flag)
@@ -509,7 +510,7 @@ class DRIT(object) :
 
         self.G_optim = tf.train.AdamOptimizer(self.lr, beta1=0.5, beta2=0.999).minimize(self.Generator_loss, var_list=G_vars)
         self.D_optim = tf.train.AdamOptimizer(self.lr, beta1=0.5, beta2=0.999).minimize(self.Discriminator_loss, var_list=D_vars)
-        self.D_content_optim = tf.train.AdamOptimizer(self.d_content_init_lr, beta1=0.5, beta2=0.999).apply_gradients(zip(grads, D_content_vars))
+        self.D_content_optim = tf.train.AdamOptimizer(self.content_lr, beta1=0.5, beta2=0.999).apply_gradients(zip(grads, D_content_vars))
 
 
         """" Summary """
@@ -616,13 +617,16 @@ class DRIT(object) :
         # loop for epoch
         start_time = time.time()
         lr = self.init_lr
+        content_lr = self.content_init_lr
         for epoch in range(start_epoch, self.epoch):
             if self.decay_flag:
                 lr = self.init_lr if epoch < self.decay_epoch else self.init_lr * (self.epoch - epoch) / (self.epoch - self.decay_epoch)  # linear decay
+                content_lr = self.content_init_lr if epoch < self.decay_epoch else self.content_init_lr * (self.epoch - epoch) / (self.epoch - self.decay_epoch)  # linear decay
 
             for idx in range(start_batch_id, self.iteration):
                 train_feed_dict = {
-                    self.lr : lr
+                    self.lr : lr,
+                    self.content_lr : content_lr
                 }
 
                 summary_str = self.sess.run(self.lr_write, feed_dict=train_feed_dict)
