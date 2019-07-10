@@ -7,7 +7,7 @@ import tensorflow.contrib as tf_contrib
 # l2_decay : tf_contrib.layers.l2_regularizer(0.0001)
 
 weight_init = tf.random_normal_initializer(mean=0.0, stddev=0.02)
-weight_regularizer = tf_contrib.layers.l2_regularizer(scale=0.0001)
+weight_regularizer = None
 
 ##################################################################################
 # Layer
